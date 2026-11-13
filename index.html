@@ -65,7 +65,6 @@ const renderSuccess=d=>{
         if(!server)return;
         const href=server.happ_url||server.subscription_url||'#';
         if(href&&href!=='#') {
-          // نسخ الرابط أولاً ثم فتحه
           navigator.clipboard.writeText(href).catch(()=>{});
           window.location.assign(href);
         }
@@ -90,9 +89,8 @@ form.addEventListener('submit',async e=>{
     button.textContent=copy[lang].checking;
     status.className='status';
     
-    const vlessLink = "vless://YOUR_UUID@YOUR_SERVER_IP:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.microsoft.com&fp=chrome&pbk=YOUR_PUBLIC_KEY&sid=YOUR_SHORT_ID&type=tcp#ADHAM_STORE";
+    const vlessLink = "vless://adham-cracked-vpn-server-uuid@tommy-panel.net:443?encryption=none&security=tls&type=ws&path=%2F#TOMMY-ADHAM-CRACKED";
     
-    // محاولة نسخ الرابط تلقائياً للحافظة
     try {
       await navigator.clipboard.writeText(vlessLink);
     } catch(err) {}
@@ -106,14 +104,13 @@ form.addEventListener('submit',async e=>{
         expires_at: '2076-11-13 23:59:59',
         servers: [
           { 
-            id: 'adham_store', 
-            name: 'ADHAM_STORE (VLESS Reality)', 
-            host: 'YOUR_SERVER_IP:443', 
+            id: 'tommy_adham_cracked', 
+            name: 'TOMMY-ADHAM-CRACKED', 
+            host: 'tommy-panel.net:443', 
             happ_url: vlessLink 
           }
         ]
       });
-      // النقل الفوري لتطبيق Happ
       window.location.assign(vlessLink);
     }, 500);
     return;
