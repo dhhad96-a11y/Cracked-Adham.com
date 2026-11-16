@@ -1,1888 +1,411 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport"/>
-<title>RAX MODS</title>
-<link href="https://raxmods.store/icon.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;700;800&amp;family=Rajdhani:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<style>
-        :root {
-            --bg-deep: #05070c;
-            --bg-card: #090909;
-            --bg-card-2: #141414;
-            --border-dim: #38311a;
-            --border-active: #ffd400;
-            --border-glow: rgba(255, 212, 0, 0.45);
-            
-            --cyan-primary: #ffd400;
-            --cyan-glow: rgba(255, 212, 0, 0.5);
-            --blue-accent: #ffffff;
-            --purple-accent: #d6a900;
-            --purple-glow: rgba(214, 169, 0, 0.45);
-            
-            --text-main: #ffffff;
-            --text-sub: #c7c7c7;
-            --text-dim: #777777;
-            --text-cyan: #ffd400;
-            
-            --badge-risk: #f43f5e;
-            --badge-new: #ffd400;
-            --green-active: #10b981;
-            
-            --font-display: 'Chakra Petch', sans-serif;
-            --font-body: 'Rajdhani', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            min-height: 100vh;
-            background: var(--bg-deep);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            letter-spacing: 0.5px;
-            overflow-x: hidden;
-            user-select: none;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 16px 18px 85px;
-            position: relative;
-        }
-
-        /* Ambient Cyber Lights */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 15%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 212, 0, 0.15) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(214, 169, 0, 0.06) 65%, transparent 75%);
-            filter: blur(50px);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .app-wrapper {
-            width: 100%;
-            max-width: 410px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ── Top Bar ── */
-        .header-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 4px 0 16px;
-        }
-        .header-title {
-            font-family: var(--font-display);
-            font-size: 21px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #ffffff 40%, var(--cyan-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .icon-btn {
-            background: #090e1a;
-            border: 1px solid var(--border-dim);
-            color: var(--text-cyan);
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .icon-btn:active {
-            transform: scale(0.95);
-            background: #111d33;
-            border-color: var(--cyan-primary);
-        }
-        .lang-pill {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: #090e1a;
-            border: 1px solid var(--border-dim);
-            padding: 7px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: var(--text-cyan);
-            cursor: pointer;
-        }
-
-        /* ── SCREEN 1: LOGIN VIEW ── */
-        #view-login {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-top: 25px;
-            width: 100%;
-        }
-        .login-logo-wrap {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 22px;
-        }
-        .login-logo-glow {
-            position: absolute;
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 212, 0, 0.25) 0%, rgba(255, 255, 255, 0.15) 45%, transparent 70%);
-            filter: blur(28px);
-            pointer-events: none;
-        }
-        .login-logo {
-            width: 135px;
-            height: 135px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 25px rgba(255, 212, 0, 0.65));
-            animation: floatLogo 3.8s ease-in-out infinite alternate;
-        }
-        @keyframes floatLogo {
-            0% { transform: translateY(0px) scale(0.98); }
-            100% { transform: translateY(-7px) scale(1.02); }
-        }
-        .login-title {
-            font-family: var(--font-display);
-            font-size: 34px;
-            font-weight: 900;
-            letter-spacing: 5px;
-            background: linear-gradient(135deg, #ffffff 30%, #ffd400 85%, #d6a900 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            text-shadow: 0 0 35px rgba(255, 212, 0, 0.4);
-        }
-        .login-subtitle {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            margin-bottom: 38px;
-        }
-
-        .login-form {
-            width: 100%;
-            text-align: left;
-        }
-        .input-label-row {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-cyan);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .input-label-row .sq {
-            font-size: 9px;
-            color: var(--cyan-primary);
-            text-shadow: 0 0 8px var(--cyan-primary);
-        }
-        .input-chamfer-wrap {
-            display: flex;
-            align-items: center;
-            background: #080d19;
-            border: 1.5px solid var(--border-dim);
-            padding: 4px;
-            margin-bottom: 18px;
-            clip-path: polygon(
-                10px 0, 100% 0,
-                100% calc(100% - 10px), calc(100% - 10px) 100%,
-                0 100%, 0 10px
-            );
-            transition: all 0.2s;
-        }
-        .input-chamfer-wrap:focus-within {
-            border-color: var(--cyan-primary);
-            box-shadow: 0 0 25px rgba(255, 212, 0, 0.35);
-        }
-        .access-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #ffffff;
-            font-family: var(--font-mono);
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            padding: 14px 14px;
-        }
-        .access-input::placeholder {
-            color: #273b5c;
-            letter-spacing: 2px;
-        }
-        .btn-paste {
-            background: #0e182e;
-            border: 1px solid #1e3a66;
-            color: #38bdf8;
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-family: var(--font-display);
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            cursor: pointer;
-            margin-right: 4px;
-            transition: all 0.2s;
-        }
-        .btn-paste:active {
-            background: #192b4f;
-            color: #ffd400;
-        }
-
-        .btn-unlock {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #ffd400 0%, #ffffff 55%, #d6a900 100%);
-            color: #030712;
-            border: none;
-            font-family: var(--font-display);
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            clip-path: polygon(
-                12px 0, 100% 0,
-                100% calc(100% - 12px), calc(100% - 12px) 100%,
-                0 100%, 0 12px
-            );
-            box-shadow: 0 6px 30px rgba(255, 212, 0, 0.45);
-            transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
-        }
-        .btn-unlock:active {
-            transform: scale(0.98);
-        }
-        .btn-unlock:disabled {
-            opacity: 0.6;
-            cursor: wait;
-        }
-
-        .login-footer-text {
-            margin-top: 26px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--text-dim);
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        /* ── SCREEN 2: MAIN APP (DASHBOARD) ── */
-        #view-app {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-        }
-
-        /* ── TAB 1: HOME (Radar Dial & Cards) ── */
-        .sub-header-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: var(--text-sub);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        .status-pill {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: #090e1a;
-            border: 1px solid #134e4a;
-            padding: 5px 10px;
-            border-radius: 6px;
-            color: #34d399;
-        }
-        .status-pill.online .sq { color: #10b981; text-shadow: 0 0 8px #10b981; }
-
-        /* Radar Timer Countdown */
-        .radar-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 15px 0 25px;
-            padding: 20px 0;
-        }
-        .radar-svg {
-            width: 250px;
-            height: 250px;
-            transform: rotate(-90deg);
-        }
-        .radar-bg-circle {
-            fill: none;
-            stroke: #101c30;
-            stroke-width: 4;
-            stroke-dasharray: 4 6;
-        }
-        .radar-progress {
-            fill: none;
-            stroke: #ffd400;
-            stroke-width: 5;
-            stroke-dasharray: 690;
-            stroke-dashoffset: 200;
-            stroke-linecap: round;
-            filter: drop-shadow(0 0 14px rgba(255, 212, 0, 0.75));
-            transition: stroke-dashoffset 1s ease;
-        }
-        .radar-center-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .radar-logo {
-            width: 62px;
-            height: 62px;
-            object-fit: contain;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 0 16px rgba(255, 212, 0, 0.6));
-        }
-        .countdown-digits {
-            font-family: var(--font-display);
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 212, 0, 0.6);
-        }
-        .countdown-label {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-cyan);
-            margin-top: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Key Box */
-        .key-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #090e1a;
-            border: 1px solid var(--border-dim);
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 12px;
-        }
-        .key-text-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-mono);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: #ffffff;
-        }
-        .key-text-wrap span {
-            color: var(--text-cyan);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-        .btn-copy {
-            background: #0f1c33;
-            border: 1px solid #1e3a66;
-            color: #38bdf8;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.2s;
-        }
-        .btn-copy:active {
-            background: #192f59;
-            color: #ffd400;
-        }
-
-        /* 3-Col Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        .stat-card {
-            background: #090e1a;
-            border: 1px solid var(--border-dim);
-            border-radius: 10px;
-            padding: 12px 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .stat-card .lbl {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: var(--text-cyan);
-            text-transform: uppercase;
-        }
-        .stat-card .val {
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Big Action Card: ADD SUBSCRIPTION (Cyber Gradient) */
-        .action-sub-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, #ffd400 0%, #ffffff 60%, #d6a900 100%);
-            color: #030712;
-            padding: 16px 18px;
-            border-radius: 12px;
-            clip-path: polygon(
-                12px 0, 100% 0,
-                100% calc(100% - 12px), calc(100% - 12px) 100%,
-                0 100%, 0 12px
-            );
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 8px 32px rgba(255, 212, 0, 0.45);
-            transition: transform 0.15s, opacity 0.15s;
-            -webkit-touch-callout: none !important;
-            -webkit-user-select: none !important;
-            user-select: none !important;
-        }
-        .action-sub-card:active {
-            transform: scale(0.98);
-        }
-        .action-sub-info {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        .action-sub-title {
-            font-family: var(--font-display);
-            font-size: 17px;
-            font-weight: 900;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: #030712;
-        }
-        .action-sub-desc {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            color: #0f172a;
-        }
-        .action-sub-icon {
-            width: 44px;
-            height: 44px;
-            background: #030712;
-            color: #ffd400;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            clip-path: polygon(
-                8px 0, 100% 0,
-                100% calc(100% - 8px), calc(100% - 8px) 100%,
-                0 100%, 0 8px
-            );
-            font-size: 26px;
-            font-weight: 400;
-            box-shadow: 0 0 15px rgba(255, 212, 0, 0.35);
-        }
-
-        /* ── TAB 2: FEATURES ── */
-        .features-header-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-sub);
-            margin-bottom: 14px;
-            letter-spacing: 0.8px;
-        }
-        .active-counter {
-            font-family: var(--font-display);
-            font-weight: 900;
-            font-size: 13px;
-            color: #ffd400;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 10px rgba(255, 212, 0, 0.5);
-        }
-
-        .feat-card {
-            background: #090e1a;
-            border: 1px solid var(--border-dim);
-            padding: 16px 16px;
-            margin-bottom: 14px;
-            clip-path: polygon(
-                12px 0, 100% 0,
-                100% calc(100% - 12px), calc(100% - 12px) 100%,
-                0 100%, 0 12px
-            );
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: border-color 0.2s;
-        }
-        .feat-card:hover {
-            border-color: #1e3a66;
-        }
-        .feat-card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .feat-title-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 4px;
-        }
-        .feat-num {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--text-cyan);
-        }
-        .feat-heading {
-            font-family: var(--font-display);
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-        .badge-tag {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .badge-tag.risk {
-            background: rgba(244, 63, 94, 0.2);
-            color: #fb7185;
-            border: 1px solid rgba(244, 63, 94, 0.4);
-        }
-        .badge-tag.new {
-            background: rgba(255, 212, 0, 0.18);
-            color: #38bdf8;
-            border: 1px solid rgba(255, 212, 0, 0.4);
-        }
-        .feat-explain {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-sub);
-            line-height: 1.4;
-            max-width: 250px;
-        }
-
-        /* Neon Cyan/Blue Rectangular Toggle Switch */
-        .phantom-switch {
-            position: relative;
-            width: 48px;
-            height: 26px;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-        .phantom-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .phantom-slider {
-            position: absolute;
-            inset: 0;
-            background: #0f172a;
-            border: 1.5px solid #1e293b;
-            border-radius: 5px;
-            transition: all 0.2s ease;
-        }
-        .phantom-slider:before {
-            position: absolute;
-            content: "";
-            width: 18px;
-            height: 18px;
-            left: 2px;
-            top: 2.5px;
-            background: #475569;
-            border-radius: 3px;
-            transition: all 0.2s cubic-bezier(0.2, 0.85, 0.32, 1.2);
-        }
-        .phantom-switch input:checked + .phantom-slider {
-            background: linear-gradient(135deg, #ffd400 0%, #ffffff 100%);
-            border-color: #ffd400;
-            box-shadow: 0 0 16px rgba(255, 212, 0, 0.6);
-        }
-        .phantom-switch input:checked + .phantom-slider:before {
-            transform: translateX(22px);
-            background: #030712;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Mark Style 8-Grid Selector (Cyan Active) */
-        .mark-selector-wrap {
-            margin-top: 6px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border-dim);
-        }
-        .mark-selector-label {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-cyan);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        .mark-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-        }
-        .btn-mark {
-            background: #0b1324;
-            border: 1px solid #182846;
-            color: #7dd3fc;
-            padding: 8px 4px;
-            font-family: var(--font-display);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-align: center;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.15s ease;
-        }
-        .btn-mark:hover {
-            color: #ffffff;
-            border-color: #2563eb;
-        }
-        .btn-mark.active {
-            background: #ffd400;
-            color: #030712;
-            border-color: #ffd400;
-            box-shadow: 0 0 16px rgba(255, 212, 0, 0.55);
-            font-weight: 900;
-        }
-
-        /* Sub-Options Container */
-        .sub-options-box {
-            margin-top: 8px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border-dim);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .sub-opt-hint {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: var(--text-cyan);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .sub-opt-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-        }
-        .sub-opt-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: #cbd5e1;
-            letter-spacing: 0.5px;
-        }
-
-        /* ── TAB 3: MANAGE ── */
-        .manage-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-            background: var(--border-dim);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-dim);
-        }
-        .manage-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #090e1a;
-            padding: 18px 18px;
-            text-decoration: none;
-            color: #ffffff;
-            transition: all 0.2s;
-        }
-        .manage-item:hover, .manage-item:active {
-            background: #0f182c;
-        }
-        .manage-info {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        .manage-title-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-display);
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .manage-title-row .num {
-            font-family: var(--font-mono);
-            color: #ffd400;
-            font-size: 12px;
-        }
-        .manage-url {
-            font-size: 11px;
-            color: var(--text-sub);
-            letter-spacing: 0.5px;
-        }
-        .manage-arrow {
-            color: #38bdf8;
-            font-size: 16px;
-        }
-
-        /* ── Bottom Fixed Navigation Bar ── */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 68px;
-            background: rgba(7, 10, 18, 0.94);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid #152238;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 99;
-            max-width: 440px;
-            margin: 0 auto;
-        }
-        .nav-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            background: transparent;
-            border: none;
-            color: #475569;
-            cursor: pointer;
-            height: 100%;
-            position: relative;
-            transition: color 0.2s;
-        }
-        .nav-item svg {
-            transition: transform 0.2s;
-        }
-        .nav-item span {
-            font-family: var(--font-display);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .nav-item.active {
-            color: #ffd400;
-        }
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: 12px;
-            width: 24px;
-            height: 2.5px;
-            background: #ffd400;
-            border-radius: 2px;
-            box-shadow: 0 0 12px #ffd400;
-        }
-
-        /* ── Toast Notification ── */
-        .phantom-toast {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #ffd400;
-            color: #030712;
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-family: var(--font-display);
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 25px rgba(255, 212, 0, 0.55);
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 1000;
-        }
-        .phantom-toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        /* Modal Dialog */
-        .modal-wrap {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-wrap.show {
-            display: flex;
-        }
-        .modal-box {
-            background: #090e1a;
-            border: 1.5px solid var(--border-dim);
-            padding: 24px 20px;
-            width: 100%;
-            max-width: 360px;
-            clip-path: polygon(
-                12px 0, 100% 0,
-                100% calc(100% - 12px), calc(100% - 12px) 100%,
-                0 100%, 0 12px
-            );
-            box-shadow: 0 0 35px rgba(255, 212, 0, 0.2);
-        }
-        .modal-title {
-            font-family: var(--font-display);
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            color: #ffd400;
-        }
-        .modal-content {
-            font-size: 12px;
-            color: var(--text-sub);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .btn-close-modal {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #ffd400, #ffffff);
-            color: #030712;
-            font-family: var(--font-display);
-            font-weight: 800;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        /* RAX MODS brand skin */
-        :root {
-            --bg-deep: #030303;
-            --bg-card: #090909;
-            --bg-card-2: #151515;
-            --border-dim: #40370f;
-            --border-active: #ffd400;
-            --border-glow: rgba(255, 212, 0, .5);
-            --cyan-primary: #ffd400;
-            --cyan-glow: rgba(255, 212, 0, .55);
-            --blue-accent: #ffffff;
-            --purple-accent: #d6a900;
-            --purple-glow: rgba(214, 169, 0, .4);
-            --text-main: #ffffff;
-            --text-sub: #c8c8c8;
-            --text-dim: #777777;
-            --text-cyan: #ffd400;
-        }
-        body { background: #030303; }
-        body::before {
-            background: radial-gradient(circle, rgba(255,212,0,.20), rgba(255,255,255,.06) 42%, transparent 72%);
-        }
-        /* Subtle white horizontal scan lines inspired by POWER UP */
-        body::after {
-            content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background: repeating-linear-gradient(to bottom, rgba(255,255,255,.105) 0, rgba(255,255,255,.105) 1px, transparent 1px, transparent 5px);
-            opacity: .88;
-        }
-        .app-wrapper { z-index: 1; }
-        .login-logo { width: 190px; height: 190px; filter: drop-shadow(0 0 24px rgba(255,212,0,.55)); }
-        .login-logo-glow { width: 240px; height: 240px; background: radial-gradient(circle, rgba(255,212,0,.25), transparent 70%); }
-        .login-title {
-            background: linear-gradient(110deg, #ffffff 15%, #ffd400 75%, #fff2a6 100%);
-            -webkit-background-clip: text; background-clip: text;
-            letter-spacing: 4px;
-        }
-        .input-chamfer-wrap, .lang-pill, .icon-btn { background-color: #090909; border-color: #55470e; }
-        .input-chamfer-wrap:focus-within, .icon-btn:active { border-color: #ffd400; }
-        .btn-unlock, .btn-close-modal {
-            background: linear-gradient(110deg, #ffe45c 0%, #ffd000 48%, #ffffff 100%);
-            color: #080808; box-shadow: 0 0 22px rgba(255,212,0,.25);
-        }
-        .btn-paste { border-color: #55470e; color: #ffd400; }
-        .login-footer-text { color: #a7a7a7; }
-        .login-footer-text::first-line { color: #ffffff; }
-        .radar-logo { filter: drop-shadow(0 0 12px rgba(255,212,0,.4)); }
-        @media (max-width: 480px) {
-            .login-logo { width: 178px; height: 178px; }
-            .login-title { font-size: 32px; }
-        }
-    
-        /* RAX MODS top controls — edge aligned, Power Up-inspired neon treatment */
-        .login-topbar {
-            justify-content: space-between !important;
-            align-items: center;
-            width: calc(100% + 36px);
-            margin-left: -18px;
-            padding: 0 8px 18px !important;
-            margin-bottom: 2px;
-            box-sizing: border-box;
-        }
-        @media (max-width: 480px) {
-            /* Keep Telegram and language controls equally close to the screen edges. */
-            .login-topbar {
-                width: calc(100vw - 20px);
-                margin-left: calc((100% - 100vw) / 2 + 10px);
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-        }
-        .top-action {
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 0 16px;
-            border: 1px solid rgba(255,212,0,.48);
-            border-radius: 13px;
-            background: linear-gradient(145deg, rgba(255,212,0,.10), rgba(8,8,8,.96));
-            color: #ffd400;
-            box-shadow: 0 0 16px rgba(255,212,0,.13), inset 0 0 12px rgba(255,212,0,.04);
-            font-family: var(--font-display);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-decoration: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .top-action:active { transform: scale(.97); box-shadow: 0 0 22px rgba(255,212,0,.28); }
-        .telegram-action svg { color: #fff; flex: 0 0 auto; filter: drop-shadow(0 0 5px rgba(255,255,255,.35)); }
-        .top-action { border-color: rgba(255,255,255,.52); box-shadow: 0 0 14px rgba(255,255,255,.07), 0 0 16px rgba(255,212,0,.12), inset 0 0 12px rgba(255,255,255,.035); }
-        .language-trigger { min-width: 116px; }
-        .lang-chevron { font-size: 18px; line-height: 1; margin-left: 2px; }
-        .login-logo { background: transparent !important; }
-        .language-overlay {
-            position: fixed; inset: 0; z-index: 9999;
-            display: none; align-items: center; justify-content: center;
-            padding: 22px; background: rgba(0,0,0,.88);
-            backdrop-filter: blur(10px);
-        }
-        .language-overlay.open { display: flex; }
-        .language-panel {
-            width: min(100%, 430px); padding: 24px 20px;
-            border: 1px solid rgba(255,212,0,.55);
-            border-radius: 18px 18px 5px 5px;
-            background: linear-gradient(145deg,#10100b,#050505 65%);
-            box-shadow: 0 0 35px rgba(255,212,0,.17);
-            text-align: left;
-        }
-        .language-heading {
-            color: #ffd400; font: 800 19px var(--font-display);
-            letter-spacing: 3px; margin: 0 0 18px;
-        }
-        .language-choice {
-            width: 100%; display: flex; align-items: center; gap: 15px;
-            padding: 15px; margin-top: 11px; border-radius: 13px;
-            border: 1px solid #514719; background: #0b0b09; color: #fff;
-            text-align: left; font: 700 16px var(--font-display); cursor: pointer;
-        }
-        .language-choice.active { border: 2px solid #ffd400; background: rgba(255,212,0,.08); box-shadow: 0 0 18px rgba(255,212,0,.16); }
-        .language-code {
-            width: 52px; height: 52px; display:grid; place-items:center;
-            border-radius: 12px; background: rgba(255,212,0,.08);
-            border: 1px solid rgba(255,212,0,.35); color: #ffd400;
-            font-size: 17px; font-weight: 900;
-        }
-        .language-name { display:flex; flex-direction:column; gap:3px; }
-        .language-name small { color:#888; font:600 11px var(--font-body); letter-spacing:1.5px; }
-        .language-check { margin-left:auto; color:#ffd400; font-size:23px; }
-        .language-close {
-            width:100%; margin-top:14px; padding:13px;
-            border:1px solid #3b351d; border-radius:10px;
-            background:transparent; color:#aaa; font-size:20px; cursor:pointer;
-        }
-        @media (max-width:360px) {
-            .top-action { padding:0 11px; gap:7px; font-size:11px; }
-            .language-trigger { min-width:100px; }
-        }
-
-    </style>
-</head>
-<body>
-<div aria-label="Choose language" aria-modal="true" class="language-overlay" id="language-overlay" role="dialog">
-<div class="language-panel">
-<h2 class="language-heading">◎ CHOOSE LANGUAGE</h2>
-<button class="language-choice" data-language="ar" type="button">
-<span class="language-code">AR</span><span class="language-name">العربية<small>ARABIC</small></span><span class="language-check"></span>
-</button>
-<button class="language-choice active" data-language="en" type="button">
-<span class="language-code">EN</span><span class="language-name">English<small>ENGLISH</small></span><span class="language-check">✓</span>
-</button>
-<button class="language-choice" data-language="pt" type="button">
-<span class="language-code">PT</span><span class="language-name">Português<small>PORTUGUESE</small></span><span class="language-check"></span>
-</button>
-<button aria-label="Close" class="language-close" id="language-close" type="button">×</button>
-</div>
-</div>
-<div class="app-wrapper">
-<!-- ══════════════════════════════════════════════════════
-             SCREEN 1: LOGIN VIEW
-        ══════════════════════════════════════════════════════ -->
-<div id="view-login">
-<header class="header-bar login-topbar">
-<a aria-label="Telegram" class="top-action telegram-action" href="https://t.me/ParaModzHackUbdate" rel="noopener noreferrer" target="_blank">
-<svg aria-hidden="true" fill="currentColor" height="19" viewbox="0 0 24 24" width="19"><path d="M21.94 4.34a1.5 1.5 0 0 0-1.56-.22L2.8 11.04a1.1 1.1 0 0 0 .08 2.06l4.54 1.52 1.7 5.2a1.1 1.1 0 0 0 1.9.35l2.52-3.08 4.55 3.35a1.5 1.5 0 0 0 2.35-.9l2.4-13.65a1.5 1.5 0 0 0-.9-1.55ZM9.1 14.2l8.85-6.15-6.95 7.5-.35 2.2-1.55-3.55Z"></path></svg>
-<span>TELEGRAM</span>
-</a>
-<button aria-label="Choose language" class="top-action lang-pill language-trigger" type="button">
-<svg fill="none" height="17" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="17"><circle cx="12" cy="12" r="10"></circle><line x1="2" x2="22" y1="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-<span class="current-language">EN</span>
-<span class="lang-chevron">⌄</span>
-</button>
-</header>
-<div class="login-logo-wrap">
-<div class="login-logo-glow"></div>
-<img alt="RAX MODS" class="login-logo" src="https://raxmods.store/brand-transparent.png"/>
-</div>
-<h1 class="login-title">RAX MODS</h1>
-<p class="login-subtitle">NO ACCOUNT. NO PASSWORD. JUST YOUR KEY.</p>
-<form class="login-form" id="login-form">
-<div class="input-label-row">
-<span class="sq">■</span> ACCESS KEY
-                </div>
-<div class="input-chamfer-wrap">
-<input autocapitalize="characters" autocomplete="off" class="access-input" id="access-key-input" placeholder="RAX-XXXX-XXXX-XXXX" required="" spellcheck="false" type="text"/>
-<button class="btn-paste" id="btn-paste" type="button">PASTE</button>
-</div>
-<button class="btn-unlock" id="btn-unlock" type="submit">UNLOCK</button>
-</form>
-<p class="login-footer-text">
-                no key? contact your seller.<br/>
-                your time starts when you connect.
-            </p>
-</div>
-<!-- ══════════════════════════════════════════════════════
-             SCREEN 2: MAIN DASHBOARD (HOME / FEATURES / MANAGE)
-        ══════════════════════════════════════════════════════ -->
-<div id="view-app">
-<!-- Global Header -->
-<header class="header-bar">
-<span class="header-title" id="page-title">HOME</span>
-<div class="header-right">
-<button class="icon-btn" id="btn-bell" title="Notifications" type="button">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-</button>
-<button class="lang-pill language-trigger" type="button">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="10"></circle><line x1="2" x2="22" y1="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-<span class="current-language">EN</span>
-</button>
-</div>
-</header>
-<!-- ── TAB 1: HOME ── -->
-<div class="tab-content" id="tab-home" style="display: block;">
-<div class="sub-header-bar">
-<div class="status-pill online">
-<span class="sq">■</span> ACTIVE
-                    </div>
-<span>5 VIP SERVERS LOADED</span>
-</div>
-<!-- Circular Analog Radar Countdown Dial (Glowing Electric Cyan) -->
-<div class="radar-container">
-<svg class="radar-svg" viewbox="0 0 250 250">
-<!-- Background notched ring -->
-<circle class="radar-bg-circle" cx="125" cy="125" r="110"></circle>
-<!-- Glowing progress arc -->
-<circle class="radar-progress" cx="125" cy="125" id="radar-progress-bar" r="110"></circle>
-</svg>
-<div class="radar-center-content">
-<img alt="RAX MODS" class="radar-logo" src="https://raxmods.store/brand-transparent.png"/>
-<span class="countdown-digits" id="time-left-digits">29D 23H</span>
-<span class="countdown-label">TIME LEFT</span>
-</div>
-</div>
-<!-- Key Display & Copy -->
-<div class="key-card">
-<div class="key-text-wrap">
-<span>KEY</span>
-<strong id="display-key">ZREX-VIP-ACTIVE</strong>
-</div>
-<button class="btn-copy" id="btn-copy-key" type="button">
-<svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12"><rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-<span>COPY</span>
-</button>
-</div>
-<!-- 3 Stats Cards -->
-<div class="stats-grid">
-<div class="stat-card">
-<span class="lbl">ACTIVATED</span>
-<span class="val" id="stat-activated">TODAY</span>
-</div>
-<div class="stat-card">
-<span class="lbl">EXPIRES</span>
-<span class="val" id="stat-expires">ACTIVE</span>
-</div>
-<div class="stat-card">
-<span class="lbl">DEVICE</span>
-<span class="val" id="stat-device">MOBILE</span>
-</div>
-</div>
-<!-- Big Primary Action: ADD SUBSCRIPTION (Cyber Gradient) -->
-<div class="action-sub-card" id="btn-add-subscription" role="button" tabindex="0">
-<div class="action-sub-info">
-<span class="action-sub-title">ADD SUBSCRIPTION</span>
-<span class="action-sub-desc">opens your vpn app with your key ready</span>
-</div>
-<div class="action-sub-icon">+</div>
-</div>
-</div>
-<!-- ── TAB 2: FEATURES ── -->
-<div class="tab-content" id="tab-features" style="display: none;">
-<div class="features-header-meta">
-<span>changes apply from your next match</span>
-<span class="active-counter" id="active-feature-counter">2/5</span>
-</div>
-<!-- 01 MARKER [RISK] -->
-<div class="feat-card">
-<div class="feat-card-top">
-<div>
-<div class="feat-title-group">
-<span class="feat-num">01</span>
-<span class="feat-heading">MARKER</span>
-</div>
-<p class="feat-explain">marks every enemy on your screen.</p>
-</div>
-<label class="phantom-switch">
-<input data-feat="moco" id="sw-moco" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-<!-- Mark Style 8 Buttons Grid -->
-<div class="mark-selector-wrap">
-<div class="mark-selector-label">MARK STYLE</div>
-<div class="mark-grid">
-<button class="btn-mark" data-val="9" type="button">PHANTOM</button>
-<button class="btn-mark" data-val="14" type="button">DREAM</button>
-<button class="btn-mark" data-val="11" type="button">ICE WALL</button>
-<button class="btn-mark" data-val="1" type="button">MOCO</button>
-<button class="btn-mark" data-val="2" type="button">CLU</button>
-<button class="btn-mark" data-val="3" type="button">SHIROU</button>
-<button class="btn-mark active" data-val="5" type="button">IRIS</button>
-<button class="btn-mark" data-val="7" type="button">DREKI</button>
-</div>
-</div>
-</div>
-<!-- 02 AIMPOINT [NEW] -->
-<div class="feat-card">
-<div class="feat-card-top">
-<div>
-<div class="feat-title-group">
-<span class="feat-num">02</span>
-<span class="feat-heading">AIMPOINT</span>
-<span class="badge-tag new">NEW</span>
-</div>
-<p class="feat-explain">moves your aim from the chest to the neck, so body shots land as headshots.</p>
-</div>
-<label class="phantom-switch">
-<input data-feat="aimbot" id="sw-aimbot" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-</div>
-<!-- 03 AIM LAG -->
-<div class="feat-card">
-<div class="feat-card-top">
-<div>
-<div class="feat-title-group">
-<span class="feat-num">03</span>
-<span class="feat-heading">AIM LAG</span>
-</div>
-<p class="feat-explain">freezes the enemy for a moment while you fire or scope, so they're easier to hit.</p>
-</div>
-<label class="phantom-switch">
-<input id="sw-aimlag-master" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-<div class="sub-options-box">
-<span class="sub-opt-hint">FREEZE TRIGGER MODES</span>
-<div class="sub-opt-row">
-<span class="sub-opt-title">when firing</span>
-<label class="phantom-switch">
-<input data-feat="freeze_fire" id="sw-freeze_fire" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-<div class="sub-opt-row">
-<span class="sub-opt-title">when scoping</span>
-<label class="phantom-switch">
-<input data-feat="freeze_scope" id="sw-freeze_scope" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-</div>
-</div>
-<!-- 04 ICEWALL [INVERTED] -->
-<div class="feat-card">
-<div class="feat-card-top">
-<div>
-<div class="feat-title-group">
-<span class="feat-num">04</span>
-<span class="feat-heading">ICEWALL</span>
-<span class="badge-tag new">INVERTED</span>
-</div>
-<p class="feat-explain">inverts ice wall placement to defend automatically under pressure.</p>
-</div>
-<label class="phantom-switch">
-<input data-feat="icewall" id="sw-icewall" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-</div>
-<!-- 05 AUTO REVIVE -->
-<div class="feat-card">
-<div class="feat-card-top">
-<div>
-<div class="feat-title-group">
-<span class="feat-num">05</span>
-<span class="feat-heading">AUTO REVIVE</span>
-</div>
-<p class="feat-explain">automatically revives fallen teammates in close proximity.</p>
-</div>
-<label class="phantom-switch">
-<input data-feat="auto_revive" id="sw-auto_revive" type="checkbox"/>
-<span class="phantom-slider"></span>
-</label>
-</div>
-</div>
-</div>
-<!-- ── TAB 3: MANAGE ── -->
-<div class="tab-content" id="tab-manage" style="display: none;">
-<div class="sub-header-bar">
-<span>DOCUMENTATION &amp; APPS</span>
-</div>
-<div class="manage-list">
-<a class="manage-item" href="https://apps.apple.com/app/happ-proxy-utility/id6504287215" rel="noopener" target="_blank">
-<div class="manage-info">
-<div class="manage-title-row">
-<span class="num">01</span>
-<span>HAPP FOR IOS</span>
-</div>
-<span class="manage-url">apps.apple.com</span>
-</div>
-<span class="manage-arrow">→</span>
-</a>
-<a class="manage-item" href="https://play.google.com/store/apps/details?id=com.happproxy" rel="noopener" target="_blank">
-<div class="manage-info">
-<div class="manage-title-row">
-<span class="num">02</span>
-<span>HAPP FOR ANDROID</span>
-</div>
-<span class="manage-url">play.google.com</span>
-</div>
-<span class="manage-arrow">→</span>
-</a>
-<a class="manage-item" href="javascript:void(0)" id="btn-getting-started">
-<div class="manage-info">
-<div class="manage-title-row">
-<span class="num">03</span>
-<span>GETTING STARTED</span>
-</div>
-<span class="manage-url">setup instructions</span>
-</div>
-<span class="manage-arrow">→</span>
-</a>
-<a class="manage-item" href="javascript:void(0)" id="btn-logout" style="border-top:1px solid #1e293b;">
-<div class="manage-info">
-<div class="manage-title-row" style="color:#f87171;">
-<span class="num" style="color:#ef4444;">04</span>
-<span>LOGOUT / SWITCH KEY</span>
-</div>
-<span class="manage-url">exit session &amp; enter another key</span>
-</div>
-<span class="manage-arrow" style="color:#ef4444;">⎋</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-<!-- ── FIXED BOTTOM NAVIGATION BAR ── -->
-<nav class="bottom-nav" id="bottom-nav" style="display: none;">
-<button class="nav-item active" data-tab="home" type="button">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-<span>HOME</span>
-</button>
-<button class="nav-item" data-tab="features" type="button">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><rect height="12" rx="6" width="18" x="3" y="6"></rect><circle cx="8" cy="12" fill="currentColor" r="3"></circle></svg>
-<span>FEATURES</span>
-</button>
-<button class="nav-item" data-tab="manage" type="button">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
-<span>MANAGE</span>
-</button>
-</nav>
-<!-- Toast Notification (Cyan Glow) -->
-<div class="phantom-toast" id="toast">CHANGES SAVED ✓</div>
-<!-- Getting Started Guide Modal -->
-<div class="modal-wrap" id="modal-guide">
-<div class="modal-box">
-<h3 class="modal-title">QUICK START GUIDE</h3>
-<div class="modal-content">
-                1. Install <strong>Happ</strong> on your iOS or Android device.<br/><br/>
-                2. Tap the <strong>ADD SUBSCRIPTION</strong> button on the Home tab.<br/><br/>
-                3. Happ will automatically import all 5 high-speed VIP servers.<br/><br/>
-                4. Select your closest server and tap the big power button to connect!
-            </div>
-<button class="btn-close-modal" id="btn-close-guide" type="button">GOT IT</button>
-</div>
-</div>
-<script>
-(() => {
- const overlay=document.getElementById('language-overlay');
- if(!overlay) return;
- const dictionaries={
-  en:{subtitle:'NO ACCOUNT. NO PASSWORD. JUST YOUR KEY.',access:'ACCESS KEY',paste:'PASTE',unlock:'UNLOCK',noKey:'no key? contact your seller.',time:'your time starts when you connect.'},
-  ar:{subtitle:'لا تحتاج إلى حساب أو كلمة مرور، فقط مفتاحك.',access:'مفتاح الدخول',paste:'لصق',unlock:'فتح',noKey:'ليس لديك مفتاح؟ تواصل مع البائع.',time:'يبدأ وقتك عند الاتصال.'},
-  pt:{subtitle:'SEM CONTA. SEM SENHA. APENAS SUA CHAVE.',access:'CHAVE DE ACESSO',paste:'COLAR',unlock:'DESBLOQUEAR',noKey:'Sem chave? Entre em contato com seu vendedor.',time:'Seu tempo começa quando você se conecta.'}
- };
- function setLanguage(lang){
-  const d=dictionaries[lang]||dictionaries.en;
-  document.documentElement.lang=lang;
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
-  document.querySelectorAll('.current-language').forEach(el=>el.textContent=lang.toUpperCase());
-  const sub=document.querySelector('.login-subtitle'); if(sub) sub.textContent=d.subtitle;
-  const label=document.querySelector('.input-label-row'); if(label) label.innerHTML='<span class="sq">■</span> '+d.access;
-  const paste=document.getElementById('btn-paste'); if(paste) paste.textContent=d.paste;
-  const unlock=document.getElementById('btn-unlock'); if(unlock) unlock.textContent=d.unlock;
-  const footer=document.querySelector('.login-footer-text');
-  if(footer) footer.innerHTML=d.noKey+'<br>'+d.time;
-  document.querySelectorAll('.language-choice').forEach(btn=>{
-   const active=btn.dataset.language===lang;
-   btn.classList.toggle('active',active);
-   btn.querySelector('.language-check').textContent=active?'✓':'';
-  });
-  try{localStorage.setItem('rax_language',lang)}catch(e){}
- }
- document.querySelectorAll('.language-trigger').forEach(btn=>btn.addEventListener('click',()=>overlay.classList.add('open')));
- document.querySelectorAll('.language-choice').forEach(btn=>btn.addEventListener('click',()=>{setLanguage(btn.dataset.language);overlay.classList.remove('open')}));
- document.getElementById('language-close')?.addEventListener('click',()=>overlay.classList.remove('open'));
- overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.classList.remove('open')});
- let saved='en'; try{saved=localStorage.getItem('rax_language')||'en'}catch(e){}
- setLanguage(dictionaries[saved]?saved:'en');
-})();
-</script>
-<script>
-(() => {
-    const viewLogin = document.getElementById('view-login');
-    const viewApp = document.getElementById('view-app');
-    const bottomNav = document.getElementById('bottom-nav');
-    const loginForm = document.getElementById('login-form');
-    const keyInput = document.getElementById('access-key-input');
-    const btnUnlock = document.getElementById('btn-unlock');
-    const btnPaste = document.getElementById('btn-paste');
-    const toast = document.getElementById('toast');
-
-    const pageTitle = document.getElementById('page-title');
-    const navItems = document.querySelectorAll('.nav-item');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    const displayKey = document.getElementById('display-key');
-    const btnCopyKey = document.getElementById('btn-copy-key');
-    const statActivated = document.getElementById('stat-activated');
-    const statExpires = document.getElementById('stat-expires');
-    const statDevice = document.getElementById('stat-device');
-    const timeLeftDigits = document.getElementById('time-left-digits');
-    const btnAddSub = document.getElementById('btn-add-subscription');
-    const featCounter = document.getElementById('active-feature-counter');
-
-    const modalGuide = document.getElementById('modal-guide');
-    const btnGuide = document.getElementById('btn-getting-started');
-    const btnCloseGuide = document.getElementById('btn-close-guide');
-
-    let currentSession = null;
-    let featuresLoaded = false;
-
-    // Detect device name
-    function detectDevice() {
-        const ua = navigator.userAgent;
-        if (/iPhone/i.test(ua)) return 'iPhone • iOS';
-        if (/iPad/i.test(ua)) return 'iPad • iPadOS';
-        if (/Android/i.test(ua)) {
-            const match = ua.match(/Android\s([0-9\.]+);\s*([^;\)]+)/i);
-            return match ? (match[2].trim().slice(0, 16) + ' • Android') : 'Android Device';
-        }
-        if (/Windows/i.test(ua)) return 'PC • Windows';
-        if (/Mac/i.test(ua)) return 'Mac • macOS';
-        return 'Mobile Device';
-    }
-
-    const deviceId = localStorage.getItem('happ_device_id') || crypto.randomUUID();
-    localStorage.setItem('happ_device_id', deviceId);
-
-    function showToast(msg) {
-        if (!toast) return;
-        toast.textContent = msg || 'CHANGES SAVED ✓';
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 1600);
-    }
-
-    // Paste button support
-    if (btnPaste) {
-        btnPaste.addEventListener('click', async () => {
-            try {
-                if (navigator.clipboard && navigator.clipboard.readText) {
-                    const text = await navigator.clipboard.readText();
-                    if (text) {
-                        keyInput.value = text.trim();
-                        showToast('PASTED FROM CLIPBOARD');
-                    }
-                }
-            } catch (_) {
-                keyInput.focus();
-            }
-        });
-    }
-
-    // Copy key support
-    if (btnCopyKey) {
-        btnCopyKey.addEventListener('click', () => {
-            if (currentSession && currentSession.key) {
-                navigator.clipboard.writeText(currentSession.key);
-                showToast('KEY COPIED TO CLIPBOARD');
-            }
-        });
-    }
-
-    // Modal Guide
-    if (btnGuide) btnGuide.addEventListener('click', () => modalGuide.classList.add('show'));
-    if (btnCloseGuide) btnCloseGuide.addEventListener('click', () => modalGuide.classList.remove('show'));
-
-    // Tab Navigation
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const target = item.dataset.tab;
-            navItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-
-            tabContents.forEach(tc => tc.style.display = 'none');
-            const activeTab = document.getElementById(`tab-${target}`);
-            if (activeTab) activeTab.style.display = 'block';
-
-            pageTitle.textContent = target.toUpperCase();
-
-            if (target === 'features' && !featuresLoaded) {
-                loadFeatures();
-            }
-        });
-    });
-
-    // Expiry verification & parsing helpers
-    function parseExpireTime(expireDateStr) {
-        if (!expireDateStr) return null;
-        const str = String(expireDateStr).trim();
-        if (str === '' || str.toUpperCase() === 'ACTIVE') return null;
-
-        let t = null;
-        if (!isNaN(str)) {
-            const num = parseInt(str, 10);
-            t = (num > 1e11) ? num : (num * 1000);
-        } else {
-            t = new Date(str).getTime();
-        }
-        return (isNaN(t) || t <= 0) ? null : t;
-    }
-
-    function checkIsExpired(expireDateStr) {
-        const t = parseExpireTime(expireDateStr);
-        if (t === null) return false;
-        return Date.now() >= t;
-    }
-
-    let liveCountdownTimer = null;
-
-    function handleExpiredSession() {
-        if (liveCountdownTimer) clearInterval(liveCountdownTimer);
-        timeLeftDigits.textContent = 'EXPIRED';
-        localStorage.removeItem('zrex_app_session');
-        currentSession = null;
-        showToast('SUBSCRIPTION EXPIRED. LOGGING OUT…');
-        setTimeout(() => {
-            alert('Your key subscription has expired. Please enter a valid renewal key.');
-            window.location.reload();
-        }, 1200);
-    }
-
-    // Countdown Timer Calculator
-    function updateCountdown(expireDateStr) {
-        const expireTime = parseExpireTime(expireDateStr);
-        if (!expireTime) {
-            timeLeftDigits.textContent = 'ACTIVE';
-            return;
-        }
-
-        const now = Date.now();
-        const diff = Math.max(0, expireTime - now);
-
-        if (diff <= 0) {
-            timeLeftDigits.textContent = 'EXPIRED';
-            return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-        if (days > 0) {
-            timeLeftDigits.textContent = `${days}D ${hours}H`;
-        } else if (hours > 0) {
-            timeLeftDigits.textContent = `${hours}H ${mins}M`;
-        } else {
-            timeLeftDigits.textContent = `${mins}M ${secs}S`;
-        }
-    }
-
-    function startRealtimeCountdown(expireDateStr) {
-        if (liveCountdownTimer) clearInterval(liveCountdownTimer);
-
-        if (checkIsExpired(expireDateStr)) {
-            handleExpiredSession();
-            return;
-        }
-
-        updateCountdown(expireDateStr);
-
-        liveCountdownTimer = setInterval(() => {
-            if (checkIsExpired(expireDateStr)) {
-                handleExpiredSession();
-            } else {
-                updateCountdown(expireDateStr);
-            }
-        }, 1000);
-    }
-
-    // Check for saved session with automatic expiration check
-    try {
-        const saved = localStorage.getItem('zrex_app_session');
-        if (saved) {
-            const sess = JSON.parse(saved);
-            if (sess && sess.key) {
-                if (checkIsExpired(sess.expires_at)) {
-                    localStorage.removeItem('zrex_app_session');
-                    setTimeout(() => showToast('YOUR KEY HAS EXPIRED. ENTER NEW KEY.'), 600);
-                } else {
-                    renderApp(sess);
-                }
-            }
-        }
-    } catch (_) {}
-
-    // Local-only access: no server or subscription configuration is used.
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const keyVal = keyInput.value.trim();
-        if (keyVal !== 'ADHAM') {
-            alert('Invalid access key');
-            return;
-        }
-
-        const sessionData = {
-            key: 'ADHAM',
-            token: '',
-            expires_at: '2076-11-16T23:59:59',
-            deep_link: '',
-            activated_at: new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' })
-        };
-
-        localStorage.setItem('zrex_app_session', JSON.stringify(sessionData));
-        renderApp(sessionData);
-    });
-
-    function renderApp(session) {
-        currentSession = session;
-        viewLogin.style.display = 'none';
-        viewApp.style.display = 'flex';
-        bottomNav.style.display = 'flex';
-
-        displayKey.textContent = session.key;
-        statActivated.textContent = session.activated_at || 'TODAY';
-        statExpires.textContent = session.expires_at || 'ACTIVE';
-        statDevice.textContent = detectDevice();
-        startRealtimeCountdown(session.expires_at);
-
-        // Preload features state
-        loadFeatures();
-    }
-
-    if (btnAddSub) {
-        btnAddSub.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (currentSession && currentSession.deep_link) {
-                showToast('LAUNCHING HAPP APP…');
-                window.location.href = currentSession.deep_link;
-            } else {
-                showToast('NO SUBSCRIPTION CONFIGURED');
-            }
-        });
-    }
-
-    // Logout / Switch Key
-    const btnLogout = document.getElementById('btn-logout');
-    if (btnLogout) {
-        btnLogout.addEventListener('click', () => {
-            if (confirm('Do you want to log out of this key?')) {
-                if (liveCountdownTimer) clearInterval(liveCountdownTimer);
-                localStorage.removeItem('zrex_app_session');
-                window.location.reload();
-            }
-        });
-    }
-
-    // ── FEATURES STATE & TOGGLES ──
-    async function loadFeatures() {
-        if (!currentSession) return;
-        try {
-            const res = await fetch('api/features', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ token: currentSession.token, key: currentSession.key })
-            });
-            const data = await res.json();
-            if (data && data.features) {
-                applyFeaturesState(data.features);
-            }
-        } catch (_) {}
-        featuresLoaded = true;
-    }
-
-    function applyFeaturesState(f) {
-        // Toggle switches
-        const switchMap = {
-            'moco': 'sw-moco',
-            'aimbot': 'sw-aimbot',
-            'freeze_fire': 'sw-freeze_fire',
-            'freeze_scope': 'sw-freeze_scope',
-            'icewall': 'sw-icewall',
-            'auto_revive': 'sw-auto_revive'
-        };
-
-        let activeCount = 0;
-        for (const [k, id] of Object.entries(switchMap)) {
-            const el = document.getElementById(id);
-            if (el && f[k] !== undefined) {
-                el.checked = (parseInt(f[k], 10) === 1);
-                if (el.checked) activeCount++;
-            }
-        }
-
-        // Aim Lag Master Switch is on if either freeze_fire or freeze_scope is on
-        const aimlagMaster = document.getElementById('sw-aimlag-master');
-        if (aimlagMaster) {
-            aimlagMaster.checked = (f.freeze_fire == 1 || f.freeze_scope == 1);
-        }
-
-        // Mark style button active state
-        if (f.marker !== undefined) {
-            const targetVal = String(f.marker);
-            document.querySelectorAll('.btn-mark').forEach(btn => {
-                if (btn.dataset.val === targetVal) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-
-        if (featCounter) featCounter.textContent = `${activeCount}/5`;
-    }
-
-    // Feature Switch Change Handlers
-    document.querySelectorAll('.phantom-switch input[data-feat]').forEach(sw => {
-        sw.addEventListener('change', async function() {
-            const feat = this.dataset.feat;
-            const val = this.checked ? '1' : '0';
-
-            showToast(`${feat.toUpperCase()} → ${this.checked ? 'ON' : 'OFF'}`);
-
-            // Update Aim Lag master switch if sub-option changed
-            if (feat === 'freeze_fire' || feat === 'freeze_scope') {
-                const ff = document.getElementById('sw-freeze_fire')?.checked;
-                const fs = document.getElementById('sw-freeze_scope')?.checked;
-                const m = document.getElementById('sw-aimlag-master');
-                if (m) m.checked = (ff || fs);
-            }
-
-            countActiveFeatures();
-
-            try {
-                if (currentSession) {
-                    await fetch('api/features', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            token: currentSession.token,
-                            key: currentSession.key,
-                            feature: feat,
-                            value: val
-                        })
-                    });
-                }
-            } catch (_) {}
-        });
-    });
-
-    // Aim Lag Master Switch Handler
-    const aimlagMaster = document.getElementById('sw-aimlag-master');
-    if (aimlagMaster) {
-        aimlagMaster.addEventListener('change', async function() {
-            const isOn = this.checked;
-            const ff = document.getElementById('sw-freeze_fire');
-            const fs = document.getElementById('sw-freeze_scope');
-            if (ff) ff.checked = isOn;
-            if (fs) fs.checked = isOn;
-
-            showToast(`AIM LAG → ${isOn ? 'ON' : 'OFF'}`);
-            countActiveFeatures();
-
-            try {
-                if (currentSession) {
-                    await fetch('api/features', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            token: currentSession.token,
-                            key: currentSession.key,
-                            freeze_fire: isOn ? '1' : '0',
-                            freeze_scope: isOn ? '1' : '0'
-                        })
-                    });
-                }
-            } catch (_) {}
-        });
-    }
-
-    // Mark Style Buttons
-    document.querySelectorAll('.btn-mark').forEach(btn => {
-        btn.addEventListener('click', async function() {
-            document.querySelectorAll('.btn-mark').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const val = this.dataset.val;
-
-            showToast(`MARKER → ${this.textContent.trim()}`);
-
-            try {
-                if (currentSession) {
-                    await fetch('api/features', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            token: currentSession.token,
-                            key: currentSession.key,
-                            marker: val
-                        })
-                    });
-                }
-            } catch (_) {}
-        });
-    });
-
-    function countActiveFeatures() {
-        let count = 0;
-        const switches = ['sw-moco', 'sw-aimbot', 'sw-freeze_fire', 'sw-freeze_scope', 'sw-icewall', 'sw-auto_revive'];
-        switches.forEach(id => {
-            const el = document.getElementById(id);
-            if (el && el.checked) count++;
-        });
-        if (featCounter) featCounter.textContent = `${Math.min(5, count)}/5`;
-    }
-
-})();
-</script>
-</body>
+<html dir="rtl" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+  <meta content="#04070d" name="theme-color"/>
+  <title>
+   ZIROX CHEAT
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="css/css2.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="app" id="app">
+   <div aria-hidden="true" class="bg-fx">
+    <i class="fx-orb a">
+    </i>
+    <i class="fx-orb b">
+    </i>
+    <i class="fx-orb c">
+    </i>
+    <i class="fx-grid">
+    </i>
+    <i class="fx-spark s1">
+    </i>
+    <i class="fx-spark s2">
+    </i>
+    <i class="fx-spark s3">
+    </i>
+    <i class="fx-spark s4">
+    </i>
+    <i class="fx-spark s5">
+    </i>
+    <i class="fx-spark s6">
+    </i>
+    <i class="fx-vignette">
+    </i>
+   </div>
+   <!-- ─────────── LOGIN ─────────── -->
+   <div class="login view-enter" id="authView">
+    <div class="login-top">
+     <div class="lang">
+      <button aria-haspopup="menu" aria-label="Language" class="lang-btn frame" id="langBtn" type="button">
+       <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+        <circle cx="12" cy="12" r="9">
+        </circle>
+        <path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9S9.6 5.6 12 3z">
+        </path>
+       </svg>
+       <span class="lang-code">
+        EN
+       </span>
+      </button>
+      <div class="lang-menu" role="menu">
+       <button class="lang-item" data-lang="en" dir="ltr" role="menuitemradio" type="button">
+        <span>
+         English
+        </span>
+        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+         <path d="m5 12.5 4.5 4.5L19 7.5">
+         </path>
+        </svg>
+       </button>
+       <button class="lang-item" data-lang="ar" dir="rtl" role="menuitemradio" type="button">
+        <span>
+         العربية
+        </span>
+        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+         <path d="m5 12.5 4.5 4.5L19 7.5">
+         </path>
+        </svg>
+       </button>
+      </div>
+     </div>
+    </div>
+    <div class="login-hero">
+     <img alt="ZIROX CHEAT" class="logo logo-lg" draggable="false" src="images/zirox-logo.jpg"/>
+     <p class="tagline" data-i18n="tagline">
+      ZIROX IS THE BEST
+     </p>
+    </div>
+    <form autocomplete="off" class="login-form" id="loginForm" novalidate="">
+     <label class="field-label" for="keyInput">
+      <i class="sq">
+      </i>
+      <span data-i18n="keyLbl">
+       مفتاح الوصول
+      </span>
+     </label>
+     <div class="key-field frame" id="keyField">
+      <input aria-label="Access key" autocapitalize="characters" autocomplete="off" dir="ltr" id="keyInput" inputmode="text" maxlength="19" name="key" placeholder="ZX-XXXX-XXXX-XXXX" spellcheck="false"/>
+      <button class="btn-chip" data-i18n="paste" id="pasteBtn" type="button">
+       لصق
+      </button>
+     </div>
+     <p class="form-error" id="loginErr" role="alert">
+     </p>
+     <button class="btn-primary cut2" id="loginBtn" type="submit">
+      <svg aria-hidden="true" class="spin" viewbox="0 0 24 24">
+       <circle class="spin-track" cx="12" cy="12" r="9.5">
+       </circle>
+       <circle class="spin-arc" cx="12" cy="12" r="9.5">
+       </circle>
+      </svg>
+      <span class="btn-label" data-i18n="loginBtn" id="loginBtnText">
+       تفعيل
+      </span>
+     </button>
+     <p class="login-note" data-i18n="loginHint">
+      لا تملك مفتاحاً؟ تواصل مع البائع.
+     </p>
+     <p class="login-note dim" data-i18n="loginHintDim">
+      يبدأ وقتك عند الاتصال.
+     </p>
+    </form>
+   </div>
+   <!-- ─────────── DASHBOARD ─────────── -->
+   <div class="dash hidden" id="dashView">
+    <header class="topbar">
+     <img alt="ZIROX CHEAT" class="topbar-logo" draggable="false" src="images/zirox-logo.jpg"/>
+     <div class="topbar-end">
+      <div class="lang">
+       <button aria-haspopup="menu" aria-label="Language" class="lang-btn frame" id="langBtn2" type="button">
+        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+         <circle cx="12" cy="12" r="9">
+         </circle>
+         <path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9S9.6 5.6 12 3z">
+         </path>
+        </svg>
+        <span class="lang-code">
+         EN
+        </span>
+       </button>
+       <div class="lang-menu" role="menu">
+        <button class="lang-item" data-lang="en" dir="ltr" role="menuitemradio" type="button">
+         <span>
+          English
+         </span>
+         <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+          <path d="m5 12.5 4.5 4.5L19 7.5">
+          </path>
+         </svg>
+        </button>
+        <button class="lang-item" data-lang="ar" dir="rtl" role="menuitemradio" type="button">
+         <span>
+          العربية
+         </span>
+         <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+          <path d="m5 12.5 4.5 4.5L19 7.5">
+          </path>
+         </svg>
+        </button>
+       </div>
+      </div>
+     </div>
+    </header>
+    <main class="page" id="pageMain">
+     <!-- HOME -->
+     <section class="tab-page" id="tab-home" role="tabpanel">
+      <div class="status-row">
+       <span class="pill on" id="statusPill">
+        <i>
+        </i>
+        <span data-i18n="active" id="statusText">
+         ACTIVE
+        </span>
+       </span>
+       <span class="refreshed" id="refreshed">
+        <span data-i18n="live">
+         LIVE
+        </span>
+       </span>
+      </div>
+      <div class="gauge" id="gauge">
+       <span class="corner tl">
+       </span>
+       <span class="corner tr">
+       </span>
+       <span class="corner bl">
+       </span>
+       <span class="corner br">
+       </span>
+       <div class="gauge-glow">
+       </div>
+       <svg aria-hidden="true" class="gauge-svg" viewbox="0 0 300 284">
+        <g id="ticks">
+        </g>
+        <circle class="gauge-mark" cx="150" cy="0" id="gaugeMark" r="4.5">
+        </circle>
+       </svg>
+       <div class="gauge-center">
+        <div class="gauge-brand" dir="ltr">
+         <span class="gb-rule">
+         </span>
+         <span class="gb-word">
+          ZIROX
+          <b>
+           CHEAT
+          </b>
+         </span>
+         <span class="gb-rule">
+         </span>
+        </div>
+        <div class="time-left" id="daysLeft">
+         0
+        </div>
+        <div class="time-label" data-i18n="daysLeft" id="timeLabel">
+         يوم متبقٍ
+        </div>
+        <div class="gauge-timer" id="timer">
+         00:00:00
+        </div>
+       </div>
+      </div>
+      <div class="key-row frame">
+       <span class="key-value" dir="ltr" id="keyOut">
+        —
+       </span>
+       <button class="btn-chip" data-i18n="copy" id="copyKey" type="button">
+        COPY
+       </button>
+      </div>
+      <div class="stats">
+       <div class="stat frame">
+        <span class="mono-label" data-i18n="keyName">
+         اسم المفتاح
+        </span>
+        <b id="keyName">
+         —
+        </b>
+       </div>
+       <div class="stat frame">
+        <span class="mono-label" data-i18n="device">
+         الجهاز
+        </span>
+        <b class="mono" dir="ltr" id="deviceOut">
+         —
+        </b>
+       </div>
+       <div class="stat frame">
+        <span class="mono-label" data-i18n="expiresAt">
+         ينتهي في
+        </span>
+        <b id="expiresAtHome">
+         —
+        </b>
+       </div>
+      </div>
+     </section>
+     <!-- FEATURES -->
+     <section class="tab-page hidden" id="tab-features" role="tabpanel">
+      <h2 class="page-title" data-i18n="featuresTitle">
+       الميزات
+      </h2>
+      <p class="page-sub" data-i18n="featuresDesc">
+       فعّل الميزة التي تريدها، ثم اضغط إضافة الاشتراك.
+      </p>
+      <div class="features">
+       <article class="feature frame">
+        <div class="feature-head">
+         <span aria-hidden="true" class="feature-icon">
+          <svg class="ic" viewbox="0 0 24 24">
+           <circle cx="12" cy="12" r="7">
+           </circle>
+           <path d="M12 2v4M12 18v4M2 12h4M18 12h4">
+           </path>
+           <circle cx="12" cy="12" r="1.4">
+           </circle>
+          </svg>
+         </span>
+         <div class="feature-info">
+          <b>
+           <span dir="ltr">
+            AIM BOT
+           </span>
+          </b>
+          <small class="feature-state">
+           اشتراك مستقل
+          </small>
+         </div>
+        </div>
+        <button aria-pressed="false" class="feature-activate cut2" data-feature="aimbot" type="button">
+         <span class="btn-label" data-i18n="featureActivate">
+          تفعيل
+         </span>
+         <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+          <path d="m5 12.5 4.5 4.5L19 7.5">
+          </path>
+         </svg>
+        </button>
+       </article>
+      </div>
+      <p class="note" data-i18n="featuresNote">
+       كل ميزة تُضاف كاشتراك منفصل داخل Happ، وتعمل بنفس المفتاح والجهاز.
+      </p>
+     </section>
+     <!-- SETTINGS -->
+     <section class="tab-page hidden" id="tab-settings" role="tabpanel">
+      <h2 class="page-title" data-i18n="settingsTitle">
+       الإعدادات
+      </h2>
+      <p class="page-sub" data-i18n="settingsDesc">
+       إدارة جلستك وبيانات الاشتراك.
+      </p>
+      <div class="settings">
+       <button class="key-row frame" id="langRow" type="button">
+        <span class="row-lbl" data-i18n="langLabel">
+         اللغة
+        </span>
+        <span class="row-val" id="langVal">
+         العربية
+        </span>
+       </button>
+       <button class="key-row frame" id="copyKey2" type="button">
+        <span class="row-lbl" data-i18n="copyKey">
+         نسخ المفتاح
+        </span>
+        <span class="row-val" data-i18n="copy">
+         COPY
+        </span>
+       </button>
+       <div class="key-row frame">
+        <span class="row-lbl" data-i18n="expiresAt">
+         ينتهي في
+        </span>
+        <span class="row-val" id="expiresAt">
+         —
+        </span>
+       </div>
+       <button class="key-row frame danger" id="logoutBtn" type="button">
+        <span class="row-lbl" data-i18n="logout">
+         تسجيل الخروج
+        </span>
+        <span class="row-val">
+         →
+        </span>
+       </button>
+      </div>
+      <p class="note" data-i18n="note">
+       الاشتراك مرتبط بجهاز واحد فقط، ولا يعمل على جهاز آخر.
+      </p>
+     </section>
+     <!-- CTA (home only) -->
+     <div class="cta-wrap" id="homeCta">
+      <button class="cta cut2" id="addSubBtn" type="button">
+       <span class="cta-text">
+        <b data-i18n="addSub">
+         إضافة الاشتراك
+        </b>
+        <small data-i18n="addSubSmall">
+         يفتح Happ ويضيف الاشتراك تلقائيًا
+        </small>
+       </span>
+       <span class="cta-plus cut">
+        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+         <path d="M12 5v14M5 12h14">
+         </path>
+        </svg>
+       </span>
+      </button>
+     </div>
+    </main>
+    <nav aria-label="Dashboard" class="tabbar" role="tablist">
+     <span aria-hidden="true" class="tab-bubble">
+     </span>
+     <button aria-selected="true" class="tab active" data-tab="home" role="tab" type="button">
+      <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+       <path d="M4 11l8-7 8 7">
+       </path>
+       <path d="M6 10v9h12v-9">
+       </path>
+      </svg>
+      <span data-i18n="tabHome">
+       الرئيسية
+      </span>
+     </button>
+     <button aria-selected="false" class="tab" data-tab="features" role="tab" type="button">
+      <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+       <path d="M12 3 3 7.5 12 12l9-4.5L12 3z">
+       </path>
+       <path d="m3 12 9 4.5L21 12">
+       </path>
+       <path d="m3 16.5 9 4.5 9-4.5">
+       </path>
+      </svg>
+      <span data-i18n="tabFeatures">
+       الميزات
+      </span>
+     </button>
+     <button aria-selected="false" class="tab" data-tab="settings" role="tab" type="button">
+      <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+       <circle cx="12" cy="12" r="3">
+       </circle>
+       <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z">
+       </path>
+      </svg>
+      <span data-i18n="tabSettings">
+       الإعدادات
+      </span>
+     </button>
+    </nav>
+   </div>
+  </div>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+  <script src="js/app.js">
+  </script>
+ </body>
 </html>
