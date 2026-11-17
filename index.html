@@ -1,411 +1,516 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="en">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-  <meta content="#04070d" name="theme-color"/>
+  <meta content="#080808" name="theme-color"/>
   <title>
-   ZIROX CHEAT
+   TAHA ALONE — Premium Gaming Panel
   </title>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="css/css2.css" rel="stylesheet"/>
-  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+   :root{
+--bg:#080808;--red:#ff0033;--deep:#8b0000;
+--fg:#f4eeee;--muted:#9a8e8e;--card:#141010;
+--border:#2e1f20;--ok:#3ddc84;
+--grad:linear-gradient(135deg,var(--red),var(--deep));
+--glow:0 0 0 1px rgba(255,0,51,.6),0 10px 40px -8px rgba(255,0,51,.55);
+--soft:0 0 24px -6px rgba(255,0,51,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--fg);font-family:"Chakra Petch",system-ui,sans-serif;min-height:100dvh}
+body{
+background:radial-gradient(120% 60% at 50% -10%,rgba(255,0,51,.22),transparent 60%),radial-gradient(80% 50% at 100% 110%,rgba(139,0,0,.3),transparent 70%),var(--bg);
+overflow-x:hidden;
+}
+body::before{
+content:"";position:fixed;inset:0;pointer-events:none;
+background-image:linear-gradient(rgba(255,0,51,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,51,.07) 1px,transparent 1px);
+background-size:32px 32px;
+mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.hidden{display:none!important}
+.wrap{position:relative;max-width:36rem;margin:0 auto;padding:1.25rem 1.25rem 7rem;min-height:100dvh;display:flex;flex-direction:column}
+.center{justify-content:center;padding-bottom:2.5rem;max-width:24rem}
+.title{
+font-family:"Russo One",sans-serif;letter-spacing:.08em;line-height:1;
+font-size:clamp(2.6rem,12vw,3.75rem);
+background:linear-gradient(180deg,var(--fg) 30%,var(--red) 130%);
+-webkit-background-clip:text;background-clip:text;color:transparent;
+text-shadow:0 0 40px rgba(255,0,51,.35);text-align:center;
+}
+.label{font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:var(--muted)}
+.sub{text-align:center;margin-top:1rem}
+.card{background:linear-gradient(160deg,#1d1314,#110d0d);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+.btn{
+display:flex;align-items:center;justify-content:center;gap:.6rem;
+width:100%;height:3.5rem;border-radius:10px;
+font-family:"Russo One",sans-serif;letter-spacing:.14em;font-size:1rem;
+color:#fff;background:var(--grad);box-shadow:var(--glow);
+transition:transform .15s,filter .25s;
+}
+.btn:hover{filter:brightness(1.12)}
+.btn:active{transform:scale(.97)}
+.btn.big{height:4rem;font-size:1.15rem;animation:pulse 2.4s ease-in-out infinite}
+.ghost{
+display:flex;align-items:center;justify-content:center;gap:.4rem;
+height:2.4rem;padding:0 .8rem;border-radius:10px;
+font-weight:600;letter-spacing:.14em;font-size:.7rem;
+border:1px solid rgba(255,0,51,.45);background:rgba(255,0,51,.08);
+}
+.ghost.full{width:100%;height:2.75rem}
+input{
+width:100%;height:3.5rem;padding:0 1rem;border-radius:10px;
+border:1px solid var(--border);background:rgba(8,8,8,.7);
+color:var(--fg);font:inherit;letter-spacing:.12em;font-size:.9rem;
+transition:border-color .2s,box-shadow .2s;
+}
+input::placeholder{color:var(--muted);letter-spacing:.16em}
+input:focus{outline:none;border-color:var(--red);box-shadow:var(--soft)}
+.stack>*+*{margin-top:1rem}
+.msg{min-height:1.25rem;text-align:center;font-weight:600;letter-spacing:.2em;font-size:.75rem;color:var(--red)}
+.msg.ok{color:var(--ok)}
+.logo{
+width:4rem;height:4rem;border-radius:16px;margin:0 auto 1.5rem;
+display:grid;place-items:center;background:var(--grad);
+box-shadow:var(--glow);font-family:"Russo One";font-size:1.4rem;
+animation:pulse 2.4s ease-in-out infinite;
+}
+header{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.5rem;font-family:"Russo One";letter-spacing:.16em;font-size:.85rem}
+.brand i{
+width:2.25rem;height:2.25rem;border-radius:8px;background:var(--grad);
+display:grid;place-items:center;font-style:normal;box-shadow:var(--glow);
+}
+.pill{display:inline-block;padding:.3rem .8rem;border-radius:999px;border:1px solid rgba(255,0,51,.4);background:rgba(255,0,51,.1);color:var(--red);font-size:.65rem}
+.hero{margin-top:2.5rem;text-align:center}
+.hero .btn{margin-top:2rem}
+.section{margin-top:2.5rem;scroll-margin-top:1.5rem;animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+.row-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.h2{font-family:"Russo One";letter-spacing:.14em;font-size:1.1rem}
+.feature{
+display:flex;align-items:center;gap:.75rem;width:100%;padding:1rem;
+border-radius:10px;text-align:left;border:1px solid var(--border);
+background:rgba(8,8,8,.6);transition:all .2s;
+}
+.feature+.feature{margin-top:.75rem}
+.feature span.name{flex:1;font-weight:600;letter-spacing:.12em;font-size:.9rem}
+.track{
+position:relative;width:3rem;height:1.6rem;border-radius:999px;
+background:#241b1b;border:1px solid var(--border);flex-shrink:0;transition:background .25s;
+}
+.track::after{
+content:"";position:absolute;top:50%;left:.2rem;width:1.15rem;height:1.15rem;
+border-radius:999px;background:var(--muted);transform:translateY(-50%);
+transition:transform .25s cubic-bezier(.5,1.6,.4,1),background .25s;
+}
+.feature[aria-checked="true"]{border-color:var(--red);background:rgba(255,0,51,.1);box-shadow:var(--soft)}
+.feature[aria-checked="true"] .track{background:var(--grad);border-color:var(--red)}
+.feature[aria-checked="true"] .track::after{transform:translate(1.35rem,-50%);background:#fff}
+.info{padding:0}
+.info div{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem}
+.info div+div{border-top:1px solid var(--border)}
+.info b{font-family:"Russo One";letter-spacing:.12em;font-weight:400;font-size:.9rem}
+.settings-note{
+margin-top:1rem;padding:1rem;border:1px solid var(--border);
+border-radius:10px;background:rgba(8,8,8,.55);
+color:var(--muted);font-size:.8rem;line-height:1.6;text-align:center;
+}
+footer{margin-top:auto;padding-top:3rem;text-align:center}
+footer p:first-child{font-family:"Russo One";letter-spacing:.18em;font-size:.75rem;color:var(--muted)}
+footer p:last-child{margin-top:.25rem;font-size:.6rem;opacity:.7}
+nav{
+position:fixed;left:0;right:0;bottom:0;z-index:20;
+background:rgba(8,8,8,.85);backdrop-filter:blur(14px);
+border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);
+}
+nav .grid{max-width:36rem;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);height:4rem}
+nav button{
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:.25rem;font-size:.65rem;font-weight:600;letter-spacing:.16em;
+color:var(--muted);transition:color .2s;
+}
+nav button svg{width:20px;height:20px}
+nav button.active{color:var(--red)}
+.shake{animation:shake .3s ease}
+.rise{animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:var(--glow)}50%{box-shadow:var(--glow),0 0 50px -4px rgba(255,0,51,.7)}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  </style>
  </head>
  <body>
-  <div class="app" id="app">
-   <div aria-hidden="true" class="bg-fx">
-    <i class="fx-orb a">
-    </i>
-    <i class="fx-orb b">
-    </i>
-    <i class="fx-orb c">
-    </i>
-    <i class="fx-grid">
-    </i>
-    <i class="fx-spark s1">
-    </i>
-    <i class="fx-spark s2">
-    </i>
-    <i class="fx-spark s3">
-    </i>
-    <i class="fx-spark s4">
-    </i>
-    <i class="fx-spark s5">
-    </i>
-    <i class="fx-spark s6">
-    </i>
-    <i class="fx-vignette">
-    </i>
+  <main class="wrap center rise" id="login">
+   <div class="logo">
+    TA
    </div>
-   <!-- ─────────── LOGIN ─────────── -->
-   <div class="login view-enter" id="authView">
-    <div class="login-top">
-     <div class="lang">
-      <button aria-haspopup="menu" aria-label="Language" class="lang-btn frame" id="langBtn" type="button">
-       <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-        <circle cx="12" cy="12" r="9">
-        </circle>
-        <path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9S9.6 5.6 12 3z">
-        </path>
-       </svg>
-       <span class="lang-code">
-        EN
-       </span>
-      </button>
-      <div class="lang-menu" role="menu">
-       <button class="lang-item" data-lang="en" dir="ltr" role="menuitemradio" type="button">
-        <span>
-         English
-        </span>
-        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-         <path d="m5 12.5 4.5 4.5L19 7.5">
-         </path>
-        </svg>
-       </button>
-       <button class="lang-item" data-lang="ar" dir="rtl" role="menuitemradio" type="button">
-        <span>
-         العربية
-        </span>
-        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-         <path d="m5 12.5 4.5 4.5L19 7.5">
-         </path>
-        </svg>
-       </button>
-      </div>
-     </div>
+   <h1 class="title">
+    TAHA ALONE
+   </h1>
+   <p class="label sub">
+    WELCOME TO TAHA ALONE PANEL
+   </p>
+   <form class="card stack" id="loginForm" novalidate="" style="margin-top:2rem">
+    <input autocapitalize="characters" autocomplete="off" id="keyInput" placeholder="ENTER YOUR ACCESS KEY" spellcheck="false"/>
+    <button class="btn" type="submit">
+     LOGIN
+    </button>
+    <p aria-live="polite" class="msg" id="loginMsg" role="status">
+    </p>
+   </form>
+   <footer>
+    <p>
+     TAHA ALONE © 2026
+    </p>
+    <p class="label">
+     ALL RIGHTS RESERVED.
+    </p>
+   </footer>
+  </main>
+  <div class="wrap hidden" id="dashboard">
+   <header>
+    <div class="brand">
+     <i>
+      TA
+     </i>
+     TAHA ALONE
     </div>
-    <div class="login-hero">
-     <img alt="ZIROX CHEAT" class="logo logo-lg" draggable="false" src="images/zirox-logo.jpg"/>
-     <p class="tagline" data-i18n="tagline">
-      ZIROX IS THE BEST
-     </p>
-    </div>
-    <form autocomplete="off" class="login-form" id="loginForm" novalidate="">
-     <label class="field-label" for="keyInput">
-      <i class="sq">
-      </i>
-      <span data-i18n="keyLbl">
-       مفتاح الوصول
-      </span>
-     </label>
-     <div class="key-field frame" id="keyField">
-      <input aria-label="Access key" autocapitalize="characters" autocomplete="off" dir="ltr" id="keyInput" inputmode="text" maxlength="19" name="key" placeholder="ZX-XXXX-XXXX-XXXX" spellcheck="false"/>
-      <button class="btn-chip" data-i18n="paste" id="pasteBtn" type="button">
-       لصق
-      </button>
-     </div>
-     <p class="form-error" id="loginErr" role="alert">
-     </p>
-     <button class="btn-primary cut2" id="loginBtn" type="submit">
-      <svg aria-hidden="true" class="spin" viewbox="0 0 24 24">
-       <circle class="spin-track" cx="12" cy="12" r="9.5">
-       </circle>
-       <circle class="spin-arc" cx="12" cy="12" r="9.5">
-       </circle>
-      </svg>
-      <span class="btn-label" data-i18n="loginBtn" id="loginBtnText">
-       تفعيل
-      </span>
-     </button>
-     <p class="login-note" data-i18n="loginHint">
-      لا تملك مفتاحاً؟ تواصل مع البائع.
-     </p>
-     <p class="login-note dim" data-i18n="loginHintDim">
-      يبدأ وقتك عند الاتصال.
-     </p>
-    </form>
-   </div>
-   <!-- ─────────── DASHBOARD ─────────── -->
-   <div class="dash hidden" id="dashView">
-    <header class="topbar">
-     <img alt="ZIROX CHEAT" class="topbar-logo" draggable="false" src="images/zirox-logo.jpg"/>
-     <div class="topbar-end">
-      <div class="lang">
-       <button aria-haspopup="menu" aria-label="Language" class="lang-btn frame" id="langBtn2" type="button">
-        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-         <circle cx="12" cy="12" r="9">
-         </circle>
-         <path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9S9.6 5.6 12 3z">
-         </path>
-        </svg>
-        <span class="lang-code">
-         EN
-        </span>
-       </button>
-       <div class="lang-menu" role="menu">
-        <button class="lang-item" data-lang="en" dir="ltr" role="menuitemradio" type="button">
-         <span>
-          English
-         </span>
-         <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-          <path d="m5 12.5 4.5 4.5L19 7.5">
-          </path>
-         </svg>
-        </button>
-        <button class="lang-item" data-lang="ar" dir="rtl" role="menuitemradio" type="button">
-         <span>
-          العربية
-         </span>
-         <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-          <path d="m5 12.5 4.5 4.5L19 7.5">
-          </path>
-         </svg>
-        </button>
-       </div>
-      </div>
-     </div>
-    </header>
-    <main class="page" id="pageMain">
-     <!-- HOME -->
-     <section class="tab-page" id="tab-home" role="tabpanel">
-      <div class="status-row">
-       <span class="pill on" id="statusPill">
-        <i>
-        </i>
-        <span data-i18n="active" id="statusText">
-         ACTIVE
-        </span>
-       </span>
-       <span class="refreshed" id="refreshed">
-        <span data-i18n="live">
-         LIVE
-        </span>
-       </span>
-      </div>
-      <div class="gauge" id="gauge">
-       <span class="corner tl">
-       </span>
-       <span class="corner tr">
-       </span>
-       <span class="corner bl">
-       </span>
-       <span class="corner br">
-       </span>
-       <div class="gauge-glow">
-       </div>
-       <svg aria-hidden="true" class="gauge-svg" viewbox="0 0 300 284">
-        <g id="ticks">
-        </g>
-        <circle class="gauge-mark" cx="150" cy="0" id="gaugeMark" r="4.5">
-        </circle>
-       </svg>
-       <div class="gauge-center">
-        <div class="gauge-brand" dir="ltr">
-         <span class="gb-rule">
-         </span>
-         <span class="gb-word">
-          ZIROX
-          <b>
-           CHEAT
-          </b>
-         </span>
-         <span class="gb-rule">
-         </span>
-        </div>
-        <div class="time-left" id="daysLeft">
-         0
-        </div>
-        <div class="time-label" data-i18n="daysLeft" id="timeLabel">
-         يوم متبقٍ
-        </div>
-        <div class="gauge-timer" id="timer">
-         00:00:00
-        </div>
-       </div>
-      </div>
-      <div class="key-row frame">
-       <span class="key-value" dir="ltr" id="keyOut">
-        —
-       </span>
-       <button class="btn-chip" data-i18n="copy" id="copyKey" type="button">
-        COPY
-       </button>
-      </div>
-      <div class="stats">
-       <div class="stat frame">
-        <span class="mono-label" data-i18n="keyName">
-         اسم المفتاح
-        </span>
-        <b id="keyName">
-         —
-        </b>
-       </div>
-       <div class="stat frame">
-        <span class="mono-label" data-i18n="device">
-         الجهاز
-        </span>
-        <b class="mono" dir="ltr" id="deviceOut">
-         —
-        </b>
-       </div>
-       <div class="stat frame">
-        <span class="mono-label" data-i18n="expiresAt">
-         ينتهي في
-        </span>
-        <b id="expiresAtHome">
-         —
-        </b>
-       </div>
-      </div>
-     </section>
-     <!-- FEATURES -->
-     <section class="tab-page hidden" id="tab-features" role="tabpanel">
-      <h2 class="page-title" data-i18n="featuresTitle">
-       الميزات
-      </h2>
-      <p class="page-sub" data-i18n="featuresDesc">
-       فعّل الميزة التي تريدها، ثم اضغط إضافة الاشتراك.
-      </p>
-      <div class="features">
-       <article class="feature frame">
-        <div class="feature-head">
-         <span aria-hidden="true" class="feature-icon">
-          <svg class="ic" viewbox="0 0 24 24">
-           <circle cx="12" cy="12" r="7">
-           </circle>
-           <path d="M12 2v4M12 18v4M2 12h4M18 12h4">
-           </path>
-           <circle cx="12" cy="12" r="1.4">
-           </circle>
-          </svg>
-         </span>
-         <div class="feature-info">
-          <b>
-           <span dir="ltr">
-            AIM BOT
-           </span>
-          </b>
-          <small class="feature-state">
-           اشتراك مستقل
-          </small>
-         </div>
-        </div>
-        <button aria-pressed="false" class="feature-activate cut2" data-feature="aimbot" type="button">
-         <span class="btn-label" data-i18n="featureActivate">
-          تفعيل
-         </span>
-         <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-          <path d="m5 12.5 4.5 4.5L19 7.5">
-          </path>
-         </svg>
-        </button>
-       </article>
-      </div>
-      <p class="note" data-i18n="featuresNote">
-       كل ميزة تُضاف كاشتراك منفصل داخل Happ، وتعمل بنفس المفتاح والجهاز.
-      </p>
-     </section>
-     <!-- SETTINGS -->
-     <section class="tab-page hidden" id="tab-settings" role="tabpanel">
-      <h2 class="page-title" data-i18n="settingsTitle">
-       الإعدادات
-      </h2>
-      <p class="page-sub" data-i18n="settingsDesc">
-       إدارة جلستك وبيانات الاشتراك.
-      </p>
-      <div class="settings">
-       <button class="key-row frame" id="langRow" type="button">
-        <span class="row-lbl" data-i18n="langLabel">
-         اللغة
-        </span>
-        <span class="row-val" id="langVal">
-         العربية
-        </span>
-       </button>
-       <button class="key-row frame" id="copyKey2" type="button">
-        <span class="row-lbl" data-i18n="copyKey">
-         نسخ المفتاح
-        </span>
-        <span class="row-val" data-i18n="copy">
-         COPY
-        </span>
-       </button>
-       <div class="key-row frame">
-        <span class="row-lbl" data-i18n="expiresAt">
-         ينتهي في
-        </span>
-        <span class="row-val" id="expiresAt">
-         —
-        </span>
-       </div>
-       <button class="key-row frame danger" id="logoutBtn" type="button">
-        <span class="row-lbl" data-i18n="logout">
-         تسجيل الخروج
-        </span>
-        <span class="row-val">
-         →
-        </span>
-       </button>
-      </div>
-      <p class="note" data-i18n="note">
-       الاشتراك مرتبط بجهاز واحد فقط، ولا يعمل على جهاز آخر.
-      </p>
-     </section>
-     <!-- CTA (home only) -->
-     <div class="cta-wrap" id="homeCta">
-      <button class="cta cut2" id="addSubBtn" type="button">
-       <span class="cta-text">
-        <b data-i18n="addSub">
-         إضافة الاشتراك
-        </b>
-        <small data-i18n="addSubSmall">
-         يفتح Happ ويضيف الاشتراك تلقائيًا
-        </small>
-       </span>
-       <span class="cta-plus cut">
-        <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-         <path d="M12 5v14M5 12h14">
-         </path>
-        </svg>
-       </span>
-      </button>
-     </div>
-    </main>
-    <nav aria-label="Dashboard" class="tabbar" role="tablist">
-     <span aria-hidden="true" class="tab-bubble">
+    <button class="ghost" id="logoutBtn">
+     LOGOUT
+    </button>
+   </header>
+   <div id="featuresView">
+    <section class="hero rise">
+     <span class="label pill">
+      ACCESS GRANTED
      </span>
-     <button aria-selected="true" class="tab active" data-tab="home" role="tab" type="button">
-      <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-       <path d="M4 11l8-7 8 7">
-       </path>
-       <path d="M6 10v9h12v-9">
+     <h1 class="title" style="margin-top:1.25rem">
+      TAHA ALONE
+     </h1>
+     <p class="label" style="margin-top:.75rem">
+      PREMIUM GAMING PANEL
+     </p>
+     <button class="btn big" id="downloadFileBtn">
+      ⬇ DOWNLOAD FILE
+     </button>
+    </section>
+    <section class="section" id="features">
+     <div class="card">
+      <div class="row-head">
+       <h2 class="h2">
+        FEATURES
+       </h2>
+       <span class="label" id="count" style="font-size:.65rem">
+        0/3 SELECTED
+       </span>
+      </div>
+      <button aria-checked="false" class="feature" data-id="aimbot" role="switch">
+       <span class="name">
+        AIMBOT
+       </span>
+       <span class="track">
+       </span>
+      </button>
+      <button aria-checked="false" class="feature" data-id="animation" role="switch">
+       <span class="name">
+        ANIMATION RUN
+       </span>
+       <span class="track">
+       </span>
+      </button>
+      <button aria-checked="false" class="feature" data-id="behind" role="switch">
+       <span class="name">
+        HITTING FROM BEHIND
+       </span>
+       <span class="track">
+       </span>
+      </button>
+      <button class="btn" id="downloadXBtn" style="margin-top:1.25rem">
+       ⬇ DOWNLOAD X
+      </button>
+      <p aria-live="polite" class="msg" id="featureMsg" role="status" style="margin-top:.75rem">
+      </p>
+     </div>
+    </section>
+   </div>
+   <!-- SETTINGS -->
+   <div class="hidden" id="settingsView">
+    <section class="section">
+     <h1 class="title" style="text-align:left;font-size:2.25rem">
+      SETTINGS
+     </h1>
+     <p class="label" style="margin-top:.75rem">
+      PANEL INFORMATION
+     </p>
+     <div class="card info" style="margin-top:1.5rem">
+      <div>
+       <span class="label" style="font-size:.65rem">
+        APPLICATION NAME
+       </span>
+       <b>
+        TAHA ALONE
+       </b>
+      </div>
+      <div>
+       <span class="label" style="font-size:.65rem">
+        VERSION
+       </span>
+       <b>
+        1.0
+       </b>
+      </div>
+      <div>
+       <span class="label" style="font-size:.65rem">
+        DEVELOPER
+       </span>
+       <b>
+        TAHA
+       </b>
+      </div>
+      <div>
+       <span class="label" style="font-size:.65rem">
+        PLATFORM
+       </span>
+       <b>
+        ANDROID
+       </b>
+      </div>
+      <div>
+       <span class="label" style="font-size:.65rem">
+        STATUS
+       </span>
+       <b style="color:var(--ok)">
+        ACTIVE
+       </b>
+      </div>
+      <div>
+       <span class="label" style="font-size:.65rem">
+        LICENSE
+       </span>
+       <b>
+        PREMIUM
+       </b>
+      </div>
+     </div>
+     <div class="card stack" style="margin-top:1.25rem">
+      <div style="text-align:center">
+       <p class="h2">
+        ZARCHIVER
+       </p>
+       <p class="label" style="margin-top:.6rem">
+        ARCHIVE MANAGER FOR ANDROID
+       </p>
+      </div>
+      <button class="btn" id="zarchiverBtn">
+       ⬇ DOWNLOAD ZARCHIVER
+      </button>
+      <p class="label" style="text-align:center;font-size:.6rem">
+       AVAILABLE ON GOOGLE PLAY
+      </p>
+     </div>
+     <div class="settings-note">
+      TAHA ALONE PREMIUM PANEL
+      <br/>
+      THANK YOU FOR USING OUR APPLICATION
+     </div>
+    </section>
+   </div>
+   <footer>
+    <p>
+     TAHA ALONE © 2026
+    </p>
+    <p class="label">
+     ALL RIGHTS RESERVED.
+    </p>
+   </footer>
+   <nav>
+    <div class="grid">
+     <button class="active" id="navFeatures">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+       <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z">
        </path>
       </svg>
-      <span data-i18n="tabHome">
-       الرئيسية
-      </span>
+      FEATURES
      </button>
-     <button aria-selected="false" class="tab" data-tab="features" role="tab" type="button">
-      <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
-       <path d="M12 3 3 7.5 12 12l9-4.5L12 3z">
-       </path>
-       <path d="m3 12 9 4.5L21 12">
-       </path>
-       <path d="m3 16.5 9 4.5 9-4.5">
-       </path>
-      </svg>
-      <span data-i18n="tabFeatures">
-       الميزات
-      </span>
-     </button>
-     <button aria-selected="false" class="tab" data-tab="settings" role="tab" type="button">
-      <svg aria-hidden="true" class="ic" viewbox="0 0 24 24">
+     <button id="navSettings">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
        <circle cx="12" cy="12" r="3">
        </circle>
-       <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z">
+       <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z">
        </path>
       </svg>
-      <span data-i18n="tabSettings">
-       الإعدادات
-      </span>
+      SETTINGS
      </button>
-    </nav>
-   </div>
+     <button id="navTelegram">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+       <path d="m22 2-7 20-4-9-9-4 20-7z">
+       </path>
+       <path d="M22 2 11 13">
+       </path>
+      </svg>
+      TELEGRAM
+     </button>
+    </div>
+   </nav>
   </div>
-  <div aria-live="polite" class="toast" id="toast" role="status">
-  </div>
-  <script src="js/app.js">
+  <script>
+   // ===== CONFIG =====
+
+const ACCESS_KEYS = new Set(["ADHAM CRACKED"]);
+
+const TELEGRAM_URL = "https://t.me/dark_client12";
+
+const AIMBOT_ONLY_URL =
+"https://www.mediafire.com/file/rsxh4jpzonfxc1i/TAHA_ALONE_FF_22_ZIP.zip/file";
+
+const FULL_PACK_URL =
+"https://www.mediafire.com/file/m0f0kcpwkfqb76g/FF+2022+hack+file.7z/file";
+
+const ZARCHIVER_URL =
+"https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver";
+
+// ==================
+
+const $ = (id) => document.getElementById(id);
+
+const open = (url) =>
+window.open(url, "_blank", "noopener,noreferrer");
+
+const setMsg = (el, text, ok) => {
+el.textContent = text;
+el.classList.toggle("ok", !!ok);
+};
+
+function showDashboard() {
+$("login").classList.add("hidden");
+$("dashboard").classList.remove("hidden");
+}
+
+function showLogin() {
+$("dashboard").classList.add("hidden");
+$("login").classList.remove("hidden");
+$("keyInput").value = "";
+setMsg($("loginMsg"), "");
+}
+
+if (sessionStorage.getItem("taha-alone-session") === "1") {
+showDashboard();
+}
+
+// LOGIN
+
+$("loginForm").addEventListener("submit", (e) => {
+e.preventDefault();
+
+const input = $("keyInput");
+const msg = $("loginMsg");
+const key = input.value.trim();
+
+if (!key) {
+setMsg(msg, "PLEASE ENTER YOUR KEY!");
+shake(input);
+return;
+}
+
+if (!ACCESS_KEYS.has(key)) {
+setMsg(msg, "INVALID ACCESS KEY!");
+shake(input);
+return;
+}
+
+setMsg(msg, "ACCESS GRANTED!", true);
+
+sessionStorage.setItem("taha-alone-session", "1");
+
+setTimeout(showDashboard, 700);
+});
+
+function shake(el) {
+el.classList.remove("shake");
+void el.offsetWidth;
+el.classList.add("shake");
+}
+
+$("logoutBtn").addEventListener("click", () => {
+sessionStorage.removeItem("taha-alone-session");
+showLogin();
+});
+
+// FEATURES
+
+const selected = new Set();
+
+document.querySelectorAll(".feature").forEach((btn) => {
+btn.addEventListener("click", () => {
+const id = btn.dataset.id;
+
+selected.has(id)
+? selected.delete(id)
+: selected.add(id);
+
+btn.setAttribute("aria-checked", selected.has(id));
+
+$("count").textContent = selected.size + "/3 SELECTED";
+
+setMsg($("featureMsg"), "");
+});
+});
+
+$("downloadXBtn").addEventListener("click", () => {
+const msg = $("featureMsg");
+
+if (selected.size === 0) {
+return setMsg(msg, "PLEASE SELECT A FEATURE FIRST!");
+}
+
+if (!selected.has("aimbot")) {
+return setMsg(msg, "AIMBOT MUST BE SELECTED TO DOWNLOAD!");
+}
+
+setMsg(msg, "");
+
+open(selected.size === 1 ? AIMBOT_ONLY_URL : FULL_PACK_URL);
+});
+
+// NAVIGATION
+
+function goFeatures() {
+$("settingsView").classList.add("hidden");
+$("featuresView").classList.remove("hidden");
+
+$("navFeatures").classList.add("active");
+$("navSettings").classList.remove("active");
+
+requestAnimationFrame(() => {
+$("features").scrollIntoView({behavior:"smooth"});
+});
+}
+
+$("downloadFileBtn").addEventListener("click", goFeatures);
+$("navFeatures").addEventListener("click", goFeatures);
+
+$("navSettings").addEventListener("click", () => {
+$("featuresView").classList.add("hidden");
+$("settingsView").classList.remove("hidden");
+
+$("navSettings").classList.add("active");
+$("navFeatures").classList.remove("active");
+
+window.scrollTo({top:0,behavior:"smooth"});
+});
+
+$("navTelegram").addEventListener("click", () => {
+open(TELEGRAM_URL);
+});
+
+// ZARCHIVER
+
+$("zarchiverBtn").addEventListener("click", () => {
+open(ZARCHIVER_URL);
+});
   </script>
  </body>
 </html>
